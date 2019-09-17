@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group >
+        <item android:id="@+id/new_game_item"
+            android:icon="@drawable/ic_fiber_new_black_24dp"
+            android:title="New Game"/>
+        <item android:id="@+id/multiplayer_menu_item"
+            android:icon="@drawable/ic_people"
+            android:title="Multiplayer"/>
+    </group>
+</menu>
