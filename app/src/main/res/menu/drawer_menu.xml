@@ -7,5 +7,8 @@
         <item android:id="@+id/multiplayer_menu_item"
             android:icon="@drawable/ic_people"
             android:title="Multiplayer"/>
+        <item android:id="@+id/set_speed_item"
+            android:icon="@drawable/ic_fast_forward_black_24dp"
+            android:title="Set Speed"/>
     </group>
 </menu>

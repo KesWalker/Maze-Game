@@ -33,7 +33,7 @@ public class Map {
         this.height = height;
         this.width = width;
 
-        generateNewCells();
+        generateNewCells(height);
     }
 
     // assigns a new space cell to the specific position in the 2d array
@@ -58,8 +58,8 @@ public class Map {
         return cells;
     }
 
-    public int[] generateNewCells() {
-
+    public int[] generateNewCells(int aHeight) {
+        this.height = aHeight;
         cells2d = new int[height][width];
         for (int h = 0; h < height; h++) {
             for (int w = 0; w < width; w++) {
@@ -172,7 +172,7 @@ public class Map {
         } while (!end);
 
         //create space at the start to produce two clear paths
-        for (int x=2; x<8; x++){
+        for (int x=2; x<(height/2)%8; x++){
             setSpace(1,x);
             setSpace(x,1);
         }

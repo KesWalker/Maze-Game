@@ -9,7 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffefef"
+        android:background="@color/colorGrey"
+        android:tileMode="repeat"
         tools:context=".MainActivity">
 
         <GridView
@@ -45,32 +46,12 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="" />
 
-        <Button
-            android:id="@+id/menu_btn"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="MENU"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/new_map_btn"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="NEW"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +59,7 @@
 
             <Button
                 android:id="@+id/top_btn"
-                android:layout_width="96dp"
+                android:layout_width="128dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
@@ -94,13 +75,10 @@
                 android:id="@+id/left_btn"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="64dp"
                 android:background="@drawable/left_btn"
                 android:text=""
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/gameId"
                 app:layout_constraintEnd_toStartOf="@+id/top_btn"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +86,7 @@
 
             <Button
                 android:id="@+id/down_btn"
-                android:layout_width="96dp"
+                android:layout_width="128dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/down_btn"
@@ -123,12 +101,9 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="64dp"
                 android:background="@drawable/right_btn"
                 android:text=""
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/gameId"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/top_btn"
@@ -144,9 +119,72 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/ProgressBar"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:padding="0dp"
+            android:indeterminateDrawable="@drawable/progress_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/player_one_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="1"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/player_grid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/player_two_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="2"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/player_grid"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/countdown_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#99000000"
+            android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/countdown_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/grid"
+            app:layout_constraintBottom_toBottomOf="@id/grid"
+            android:text="3"
+            android:textSize="160sp"
+            android:textStyle="bold"
+            android:textColor="#ff0000"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/drawer_nav"
@@ -157,4 +195,5 @@
         app:headerLayout="@layout/nav_header">
 
     </com.google.android.material.navigation.NavigationView>
+
 </androidx.drawerlayout.widget.DrawerLayout>

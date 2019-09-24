@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
 import static com.speed.mazegame.CellViewSpace.WALL;
 
@@ -27,12 +28,19 @@ public class PlayerGridAdapter extends BaseAdapter {
         localPlayerNum = num;
     }
 
-    public PlayerGridAdapter(int[] cells, int[] mapCells, Activity activity, int width) {
+    public void resetPos(){
+        Log.d("kesD", "resetPos: resetting");
+        playerOnePos = 22;
+        playerTwoPos = 22;
+        move(-1);
+    }
+
+    public PlayerGridAdapter(int[] cells, int[] mapCells, Activity activity, int width, int playerNum) {
         this.cells = cells;
         this.context = activity;
         this.mapCells = mapCells;
         this.iEndOfGameListener = (IEndOfGame) activity;
-        this.localPlayerNum = CellViewSpace.PLAYER1;
+        this.localPlayerNum = playerNum;
         playerOnePos = width+1;
         cells[playerOnePos] = localPlayerNum;
     }
