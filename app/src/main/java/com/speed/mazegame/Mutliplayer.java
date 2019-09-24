@@ -6,14 +6,16 @@ public class Mutliplayer {
     private int onePos;
     private int twoPos;
     private List<Integer> cells;
+    private int blocker;
 
     public Mutliplayer() {
     }
 
-    public Mutliplayer(int onePos, int twoPos, List<Integer> cells) {
+    public Mutliplayer(int onePos, int twoPos, List<Integer> cells, int blocker) {
         this.onePos = onePos;
         this.twoPos = twoPos;
         this.cells = cells;
+        this.blocker = blocker;
     }
 
     public int getOnePos() {
@@ -38,5 +40,13 @@ public class Mutliplayer {
 
     public void setCells(List<Integer> cells) {
         this.cells = cells;
+    }
+
+    public int getBlocker() {
+        return blocker;
+    }
+
+    public void setBlocker(int blocker) {
+        this.blocker = blocker;
     }
 }

@@ -7,10 +7,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="buttonStyle">@style/buttonStyle</item>
+        <item name="android:progressBarStyle">@style/ProgressBar</item>
     </style>
 
     <style name="buttonStyle" parent="Widget.AppCompat.Button">
         <item name="android:background">@color/colorWhite</item>
+    </style>
+
+    <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_bar</item>
     </style>
 
 </resources>

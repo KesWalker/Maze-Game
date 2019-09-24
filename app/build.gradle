@@ -32,6 +32,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.google.android.material:material:1.0.0-alpha1'
     implementation 'com.google.firebase:firebase-firestore:21.0.0'
+    implementation 'com.tapadoo.android:alerter:2.+'
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -1,14 +1,20 @@
 package com.speed.mazegame;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
+
+import static com.speed.mazegame.CellViewSpace.SPACE;
+import static com.speed.mazegame.CellViewSpace.WALL;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Delayed;
 
 public class GridAdapter extends BaseAdapter {
 
@@ -32,7 +38,7 @@ public class GridAdapter extends BaseAdapter {
         }
         return cells;
     }
-
+    
     @Override
     public int getCount() {
         return cells.length;
@@ -52,5 +58,18 @@ public class GridAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         int cell = cells[position];
         return new CellViewSpace(context,cell);
+    }
+
+    public boolean placeWall(int position){
+        if(cells[position] == SPACE){
+            cells[position] = WALL;
+            notifyDataSetChanged();
+            new Handler().postDelayed(() -> {
+                cells[position]=SPACE;
+                notifyDataSetChanged();
+            },5000);
+            return true;
+        }
+        return false;
     }
 }
