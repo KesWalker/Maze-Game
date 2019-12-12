@@ -2,21 +2,13 @@ package com.speed.mazegame;
 
 import java.util.List;
 
-public class Mutliplayer {
+public class Multiplayer {
     private int onePos;
     private int twoPos;
     private List<Integer> cells;
     private int blocker;
 
-    public Mutliplayer() {
-    }
-
-    public Mutliplayer(int onePos, int twoPos, List<Integer> cells, int blocker) {
-        this.onePos = onePos;
-        this.twoPos = twoPos;
-        this.cells = cells;
-        this.blocker = blocker;
-    }
+    public Multiplayer() { }
 
     public int getOnePos() {
         return onePos;

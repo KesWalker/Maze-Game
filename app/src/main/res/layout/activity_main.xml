@@ -180,8 +180,7 @@
             android:text="3"
             android:textSize="160sp"
             android:textStyle="bold"
-            android:textColor="#ff0000"
-            />
+            android:textColor="#ff0000" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

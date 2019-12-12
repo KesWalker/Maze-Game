@@ -2,14 +2,18 @@ package com.speed.mazegame;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Toast;
 
+import static com.speed.mazegame.CellViewSpace.BOTHPLAYERS;
+import static com.speed.mazegame.CellViewSpace.PLAYER1;
+import static com.speed.mazegame.CellViewSpace.PLAYER2;
+import static com.speed.mazegame.CellViewSpace.TRANSPARENT;
 import static com.speed.mazegame.CellViewSpace.WALL;
+import static com.speed.mazegame.Map.DOWN;
+import static com.speed.mazegame.Map.RIGHT;
+import static com.speed.mazegame.Map.UP;
 
 public class PlayerGridAdapter extends BaseAdapter {
 
@@ -18,7 +22,8 @@ public class PlayerGridAdapter extends BaseAdapter {
     private Context context;
     private int playerOnePos,playerTwoPos;
     private IEndOfGame iEndOfGameListener;
-    private int localPlayerNum;
+    private int localPlayerNum, finishPos;
+    private int width;
 
     public interface IEndOfGame{
         void finishReached();
@@ -29,18 +34,22 @@ public class PlayerGridAdapter extends BaseAdapter {
     }
 
     public void resetPos(){
-        Log.d("kesD", "resetPos: resetting");
-        playerOnePos = 22;
-        playerTwoPos = 22;
+        playerOnePos = width+1;
+        playerTwoPos = width+1;
         move(-1);
     }
 
-    public PlayerGridAdapter(int[] cells, int[] mapCells, Activity activity, int width, int playerNum) {
-        this.cells = cells;
+    public PlayerGridAdapter(int finishPos, int[] mapCells, Activity activity, int width, int playerNum) {
+        this.cells = new int[mapCells.length];
+        for (int i=0;i<mapCells.length;i++){
+            this.cells[i] = TRANSPARENT;
+        }
+        this.finishPos = finishPos;
         this.context = activity;
         this.mapCells = mapCells;
         this.iEndOfGameListener = (IEndOfGame) activity;
         this.localPlayerNum = playerNum;
+        this.width = width;
         playerOnePos = width+1;
         cells[playerOnePos] = localPlayerNum;
     }
@@ -51,53 +60,29 @@ public class PlayerGridAdapter extends BaseAdapter {
     }
 
     public int move(int direction){
-        cells[playerOnePos] = CellViewSpace.TRANSPARENT;
-        int newPos;
-        switch (direction){
-            case Map.UP:
-                newPos = playerOnePos - 20;
-                playerOnePos = mapCells[newPos]==WALL?playerOnePos:newPos;
-                break;
-            case Map.RIGHT:
-                newPos = playerOnePos + 1;
-                playerOnePos = mapCells[newPos]==WALL?playerOnePos:newPos;
-                break;
-            case Map.DOWN:
-                newPos = playerOnePos+20;
-                playerOnePos = mapCells[newPos]==WALL?playerOnePos:newPos;
-                break;
-            case Map.LEFT:
-                newPos = playerOnePos -1;
-                playerOnePos = mapCells[newPos]==WALL?playerOnePos:newPos;
-                break;
-        }
-
-        Log.d("KesD", "move: playerPos: "+playerOnePos);
-
+        cells[playerOnePos] = TRANSPARENT;
+        int newPos = playerOnePos + ((direction == UP)? -width : (direction == RIGHT)? 1 : (direction == DOWN)? width : -1);
+        playerOnePos = mapCells[newPos] == WALL? playerOnePos:newPos;
         cells[playerOnePos] = localPlayerNum;
         notifyDataSetChanged();
-        if(Map.finishPos == playerOnePos){
+        if(finishPos == playerOnePos){
             iEndOfGameListener.finishReached();
         }
         return playerOnePos;
     }
 
     public int moveSecondPlayer(int pos){
-        cells[playerTwoPos] = CellViewSpace.TRANSPARENT;
+        cells[playerTwoPos] = TRANSPARENT;
         playerTwoPos = pos;
         if(playerTwoPos==playerOnePos){
-            cells[playerTwoPos] = CellViewSpace.BOTHPLAYERS;
+            cells[playerTwoPos] = BOTHPLAYERS;
         }else{
-            if(localPlayerNum == CellViewSpace.PLAYER1){
-                cells[playerTwoPos] = CellViewSpace.PLAYER2;
-                cells[playerOnePos] = CellViewSpace.PLAYER1;
-            }else{
-                cells[playerTwoPos] = CellViewSpace.PLAYER1;
-                cells[playerOnePos] = CellViewSpace.PLAYER2;
-            }
+            boolean localIsPlayerOne = localPlayerNum == PLAYER1;
+            cells[playerTwoPos] = localIsPlayerOne? PLAYER2 : PLAYER1;
+            cells[playerOnePos] = localIsPlayerOne? PLAYER1 : PLAYER2;
         }
         notifyDataSetChanged();
-        if(Map.finishPos == pos){
+        if(finishPos == pos){
             iEndOfGameListener.finishReached();
         }
         return pos;

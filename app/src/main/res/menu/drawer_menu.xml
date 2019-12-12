@@ -10,5 +10,11 @@
         <item android:id="@+id/set_speed_item"
             android:icon="@drawable/ic_fast_forward_black_24dp"
             android:title="Set Speed"/>
+        <item android:id="@+id/tilt_mode"
+            android:icon="@drawable/ic_screen_rotation_black_24dp"
+            android:title="Tilt Mode"/>
+        <item android:id="@+id/landscape_mode"
+            android:icon="@drawable/ic_stay_primary_landscape_black_24dp"
+            android:title="Landscape Mode"/>
     </group>
 </menu>

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/colorGrey">
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/colorWhite">
     <item>
         <layer-list >
-            <item android:drawable="@color/colorGrey">
-            </item>
+            <item android:drawable="@color/colorGrey"/>
             <item android:drawable="@drawable/right_arrow" android:left="8dp" android:right="8dp" android:top="8dp" android:bottom="8dp">
             </item>
         </layer-list>

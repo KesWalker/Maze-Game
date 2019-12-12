@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">Maze Game</string>
+
+    <string name="game_id">Game ID: %1$s</string>
+    <string name="select_speed">Select Speed</string>
+    <array name="speeds">
+        <item>Super Fast</item>
+        <item>Fast</item>
+        <item>Normal</item>
+        <item>Slow</item>
+        <item>Super Slow</item>
+    </array>
+    <string name="multiplayer">Multiplayer</string>
+    <string name="host_or_join">Host or Join a game?</string>
+    <string name="join">Join</string>
+    <string name="host">Host</string>
+    <string name="enter_maze_length">Enter the maze length</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="invalid_maze_length">Invalid Length. Length can\'t be less than 3 or more than 500,000.</string>
+    <string name="enter_game_id">Enter the Game ID</string>
+    <string name="game_id_invalid">Game ID invalid.</string>
+    <string name="go">GO!</string>
+    <string name="end_multiplayer">End Multiplayer</string>
+    <string name="set_map_error">Tried setting map but provided map was empty :(</string>
+    <string name="game_over_winner">Game Over. %1$s wins!</string>
+    <string name="quickest_time">Quickest time: %1$02d:%2$02d</string>
+    <string name="new_high_score">New High Score!</string>
+    <string name="see_high_score_msg">Look in the menu to see your new fastest time!</string>
 </resources>
